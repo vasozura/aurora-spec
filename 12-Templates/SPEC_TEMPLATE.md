@@ -1,188 +1,616 @@
----
-id: TEMPLATE-0001
-title: Module Specification Template
-version: 0.1.0
-status: Draft
-owner: Aurora Labs
-created: 2026-06-26
-updated: 2026-06-26
-depends_on: [GOV-0001, GOV-0003]
----
+# Aurora Specification Template
 
-# Module Specification Template
-
-## Purpose
-
-This template defines the required structure for all Aurora Studio module specification documents.
-Every module specification must follow this template exactly.
-A module with an incomplete specification is not implementation-ready.
-
-## Scope
-
-All module specifications written for `aurora-spec/03-Modules/`.
-
-## Non-Goals
-
-- This template does not contain implementation guidance.
-- This template does not define test cases (see TEMPLATE for test specs).
-
-## Ownership
-
-Owner: Aurora Labs
-Change authority: Architecture review required for template changes.
-
-## Change Rules
-
-- Template changes apply to new specifications only unless explicitly back-applied.
-- Template version must be referenced in each module specification.
+Document ID: TEMPLATE-000004  
+Version: 0.1.0  
+Status: Draft  
+Owner: Aurora Labs  
+Repository: aurora-spec  
+Path: 12-Templates/SPEC_TEMPLATE.md  
+Document Type: Specification Template  
+Depends On: 00-Governance/AURORA_CONSTITUTION.md, 00-Governance/AURORA_ENGINEERING_STANDARD.md, 02-Architecture/ARCHITECTURE.md  
 
 ---
 
-## Template
+## 1. Purpose
 
-Copy everything below this line into the new module specification file.
+This template defines the standard structure for Aurora specification documents.
+
+A specification document defines product behavior, module responsibility, interface behavior, data ownership, workflow rules or system requirements before implementation begins.
+
+Specifications are the primary source of truth for implementation.
+
+AI implementation agents must follow approved specifications and must not invent missing behavior.
 
 ---
+
+## 2. When To Use This Template
+
+Use this template for:
+
+- Product specifications
+- Module specifications
+- Interface specifications
+- Data specifications
+- AI behavior specifications
+- SDK specifications
+- Workflow specifications
+- Testing specifications when a more specific test template is not available
+- Any controlled document that defines required behavior
+
+Do not use this template for:
+
+- ADRs
+- RFCs
+- Simple implementation tasks
+- Informal notes
+- README files
+- Scratch documents
+
+---
+
+## 3. File Naming Rule
+
+Specification files must use a clear ID-based filename.
+
+Recommended patterns:
+
+```text
+MOD-000001_PROJECT_MANAGER_SPEC.md
+API-000001_PROJECT_API_SPEC.md
+DATA-000001_PROJECT_DATA_MODEL_SPEC.md
+AI-000001_AI_AGENT_BEHAVIOR_SPEC.md
+SDK-000001_PLUGIN_SDK_SPEC.md
+AFL-000001_AURORA_FILM_LANGUAGE_CORE_SPEC.md
+```
+
+Specification files must be stored in the correct repository folder:
+
+```text
+01-Product/
+02-Architecture/
+03-Modules/
+04-Interfaces/
+05-Data/
+06-AI/
+07-SDK/
+09-Tests/
+```
+
+The selected folder must match the document type and responsibility.
+
+---
+
+## 4. Specification Status Values
+
+Allowed specification statuses:
+
+- `Draft`
+- `Review`
+- `Approved`
+- `Deprecated`
+- `Superseded`
+- `Archived`
+
+Meaning:
+
+`Draft` means the specification is being written.
+
+`Review` means the specification is ready for review.
+
+`Approved` means the specification may be used for implementation.
+
+`Deprecated` means the specification should not be used for new implementation.
+
+`Superseded` means another specification replaced this document.
+
+`Archived` means the document is retained only for historical reference.
+
+Implementation should not begin from a `Draft` specification unless the task explicitly allows it.
+
+---
+
+## 5. Required Specification Template
 
 ```markdown
----
-id: MOD-XXXX
-title: [Module Name]
-version: 0.1.0
-status: Draft
-owner: Aurora Labs
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
-depends_on: []
----
+# <Specification Title>
 
-# [Module Name]
-
----
-
-## Phase 1 — Vision
-
-### Why This Module Exists
-
-[Describe the problem this module solves and why Aurora needs it.]
-
-### Success Criteria
-
-[What does success look like for this module?]
+Document ID: <DOC-ID>  
+Version: 0.1.0  
+Status: Draft  
+Owner: Aurora Labs  
+Repository: aurora-spec  
+Path: <path/to/specification.md>  
+Document Type: <Product Specification | Module Specification | Interface Specification | Data Specification | AI Specification | SDK Specification | Workflow Specification | Test Specification>  
+Depends On: <related document IDs or paths>  
+Supersedes: <DOC-ID or None>  
+Superseded By: <DOC-ID or None>  
 
 ---
 
-## Phase 2 — Specification
+## 1. Purpose
 
-### What This Module Does
+<Explain why this specification exists.>
 
-[Describe the module's responsibilities.]
-
-### What This Module Does NOT Do
-
-[Explicitly state out-of-scope behaviour.]
-
-### Inputs
-
-[What does this module receive?]
-
-### Outputs
-
-[What does this module produce?]
-
-### Invariants
-
-[Rules that must always be true while this module operates.]
+The purpose must be clear enough that a contributor or AI implementation agent understands what area of Aurora this document controls.
 
 ---
 
-## Phase 3 — Architecture
+## 2. Authority
 
-### How This Module Works
+This specification is subordinate to:
 
-[Internal structure, components, state machines, algorithms.]
+- 00-Governance/AURORA_CONSTITUTION.md
+- 00-Governance/AURORA_ENGINEERING_STANDARD.md
+- 02-Architecture/ARCHITECTURE.md
 
-### Layer
-
-[Which architecture layer does this module belong to? Reference ARCH-0001.]
-
-### Dependencies
-
-[Which other modules does this module depend on? List MOD IDs.]
-
-### Internal Components
-
-[List and describe internal components. Do not expose them as public API.]
+If this specification conflicts with a higher-authority document, the higher-authority document takes precedence.
 
 ---
 
-## Phase 4 — Data Model
+## 3. Scope
 
-### Data Owned by This Module
+This specification defines:
 
-[List DATA- IDs. Each data model must have a separate document in 05-Data/.]
+- <in-scope item 1>
+- <in-scope item 2>
+- <in-scope item 3>
 
-### Data Consumed from Other Modules
+This specification applies to:
 
-[List DATA- IDs and the source module.]
-
----
-
-## Phase 5 — Public API
-
-### Exposed Interfaces
-
-[List API- IDs. Each API must have a separate document in 04-Interfaces/.]
-
-### Events Emitted
-
-[List events this module emits.]
-
-### Events Consumed
-
-[List events this module listens to.]
+- <module, layer, workflow, interface, data area or product area>
 
 ---
 
-## Phase 6 — Tests
+## 4. Non-Scope
 
-### Test Specifications
+This specification does not define:
 
-[List TEST- IDs. Each test spec must have a separate document in 09-Tests/.]
+- <out-of-scope item 1>
+- <out-of-scope item 2>
+- <out-of-scope item 3>
 
-### Acceptance Criteria
+Non-scope is mandatory.
 
-[What must pass before this module is considered complete?]
-
----
-
-## Phase 7 — AI Tasks
-
-### Implementation Tasks
-
-[List TASK- IDs. Each task must have a document in 08-Tasks/.]
-
-### Task Sequence
-
-[In what order must tasks be executed?]
+Anything not explicitly in scope must not be implemented from this specification.
 
 ---
 
-## Phase 8 — Review
+## 5. Definitions
 
-### Review Status
+| Term | Meaning |
+|---|---|
+| <Term> | <Definition> |
 
-Status: [Draft | In Review | Approved | Rejected]
+Definitions must be precise.
 
-### Reviewer
+Do not use vague terms when the term affects implementation.
 
-[Name or role of reviewer]
+---
 
-### Review Notes
+## 6. Users, Actors or System Participants
 
-[Outstanding questions or required changes]
+This specification involves the following actors:
 
-### Approval Date
+| Actor | Description | Responsibility |
+|---|---|---|
+| <Actor> | <Description> | <Responsibility> |
 
-[YYYY-MM-DD or blank if not yet approved]
+Use this section only when actors are relevant.
+
+If no actors are relevant, state:
+
+\`\`\`text
+No external actors are defined by this specification.
+\`\`\`
+
+---
+
+## 7. Requirements
+
+### 7.1 Functional Requirements
+
+The system must:
+
+1. <Functional requirement>
+2. <Functional requirement>
+3. <Functional requirement>
+
+### 7.2 Non-Functional Requirements
+
+The system must satisfy:
+
+1. <Performance, reliability, security, offline, compatibility or usability requirement>
+2. <Requirement>
+3. <Requirement>
+
+### 7.3 Negative Requirements
+
+The system must not:
+
+1. <Forbidden behavior>
+2. <Forbidden behavior>
+3. <Forbidden behavior>
+
+Negative requirements are required when implementation agents might otherwise over-expand behavior.
+
+---
+
+## 8. Behavioral Rules
+
+The following behavior is required:
+
+1. <Behavioral rule>
+2. <Behavioral rule>
+3. <Behavioral rule>
+
+Rules must be deterministic.
+
+If behavior depends on a condition, define the condition explicitly.
+
+---
+
+## 9. Data Ownership
+
+This specification owns the following data:
+
+- <data item>
+
+This specification reads the following data owned by other modules:
+
+- <data item and owner>
+
+This specification writes the following data owned by other modules:
+
+- <data item and required interface>
+
+If no data is owned, state:
+
+\`\`\`text
+This specification does not define data ownership.
+\`\`\`
+
+Data ownership must not be ambiguous.
+
+---
+
+## 10. Interfaces
+
+This specification exposes the following public interfaces:
+
+- <interface name or future API-ID>
+
+This specification consumes the following public interfaces:
+
+- <interface name or future API-ID>
+
+If no public interface is defined, state:
+
+\`\`\`text
+This specification does not define a public interface.
+\`\`\`
+
+Public interfaces must not be changed silently after approval.
+
+---
+
+## 11. Events
+
+This specification may emit the following events:
+
+- <EventName>
+
+This specification may consume the following events:
+
+- <EventName>
+
+If no events are involved, state:
+
+\`\`\`text
+This specification does not define events.
+\`\`\`
+
+Event schemas must be defined in interface or data specifications when implementation begins.
+
+---
+
+## 12. Workflow
+
+Describe the expected workflow.
+
+\`\`\`text
+Step 1: <description>
+Step 2: <description>
+Step 3: <description>
+\`\`\`
+
+If this specification does not define a workflow, state:
+
+\`\`\`text
+This specification does not define a workflow.
+\`\`\`
+
+---
+
+## 13. Error Handling
+
+The system must handle the following errors:
+
+| Error Condition | Required Behavior | User/System Message |
+|---|---|---|
+| <Condition> | <Behavior> | <Message or message rule> |
+
+Errors must not be hidden.
+
+Recoverable errors must be reported in a meaningful way.
+
+---
+
+## 14. Security Requirements
+
+Security requirements:
+
+- <security requirement>
+
+Permission requirements:
+
+- <permission requirement>
+
+Data protection requirements:
+
+- <data protection requirement>
+
+If no specific security requirement is defined, state:
+
+\`\`\`text
+No additional security requirements are defined beyond the Aurora Constitution and Architecture.
+\`\`\`
+
+---
+
+## 15. Offline-First Requirements
+
+Offline behavior:
+
+- <offline behavior>
+
+Online behavior, if applicable:
+
+- <online behavior>
+
+If online capability is required, justify it explicitly.
+
+Aurora must remain offline-first unless an approved exception exists.
+
+---
+
+## 16. Performance Requirements
+
+Performance expectations:
+
+- <performance expectation>
+
+Responsiveness expectations:
+
+- <responsiveness expectation>
+
+If no specific performance requirement is defined, state:
+
+\`\`\`text
+No additional performance requirements are defined beyond the Aurora Constitution and Architecture.
+\`\`\`
+
+---
+
+## 17. Compatibility Requirements
+
+Compatibility requirements:
+
+- Project compatibility: <None | Required | Breaking>
+- Public API compatibility: <None | Required | Breaking>
+- Plugin compatibility: <None | Required | Breaking>
+- Cross-platform compatibility: <Windows | Linux | Both | Not Applicable>
+
+Breaking compatibility requires an ADR.
+
+---
+
+## 18. Dependencies
+
+This specification depends on:
+
+- <document ID or file path>
+
+This specification is required by:
+
+- <document ID or file path, if known>
+
+Dependencies must be explicit.
+
+Hidden dependencies are forbidden.
+
+---
+
+## 19. Testing Requirements
+
+The following tests are required:
+
+- Unit tests: <Required | Not Applicable>
+- Integration tests: <Required | Not Applicable>
+- Acceptance tests: <Required | Not Applicable>
+- Regression tests: <Required | Not Applicable>
+
+Test cases or future test specifications:
+
+- <TEST-ID or future placeholder>
+
+A feature is incomplete without applicable tests.
+
+---
+
+## 20. Acceptance Criteria
+
+This specification is acceptable when:
+
+1. Purpose is clear.
+2. Scope is explicit.
+3. Non-scope is explicit.
+4. Requirements are deterministic.
+5. Data ownership is defined.
+6. Public interfaces are defined or explicitly excluded.
+7. Events are defined or explicitly excluded.
+8. Error handling is defined.
+9. Security impact is addressed.
+10. Offline-first behavior is addressed.
+11. Performance impact is addressed.
+12. Compatibility impact is addressed.
+13. Testing requirements are defined.
+14. The specification does not violate the Aurora Constitution.
+15. The specification is consistent with AES and Architecture.
+
+---
+
+## 21. Implementation Readiness
+
+Implementation readiness:
+
+\`\`\`text
+<Not Ready | Ready After Review | Ready>
+\`\`\`
+
+Reason:
+
+<Explain why implementation may or may not begin.>
+
+Required follow-up tasks:
+
+- <TASK-ID or future placeholder>
+
+---
+
+## 22. Review Checklist
+
+Before approval, verify:
+
+1. The document ID is unique.
+2. The path is correct.
+3. The document type is correct.
+4. Dependencies are listed.
+5. Scope is clear.
+6. Non-scope prevents expansion.
+7. Requirements are testable.
+8. Interfaces are explicit.
+9. Data ownership is explicit.
+10. Security requirements are addressed.
+11. Offline-first requirements are addressed.
+12. Testing requirements are addressed.
+13. No implementation details are invented unnecessarily.
+14. AI agents can execute future tasks from this specification without guessing.
+
+---
+
+## 23. Change Control
+
+Changes to this specification must update:
+
+- Version
+- Change history
+- Affected documents, if any
+- Related tasks, if any
+
+Breaking changes require an ADR.
+
+---
+
+## 24. Change History
+
+| Version | Date | Change | Author |
+|---|---|---|---|
+| 0.1.0 | <YYYY-MM-DD> | Initial draft | Aurora Labs |
+
+---
+
+## 25. Summary
+
+<Briefly summarize what this specification controls and why it matters.>
 ```
+
+---
+
+## 6. Specification Quality Rules
+
+A good Aurora specification must be:
+
+- Deterministic
+- Scoped
+- Testable
+- Reviewable
+- Linked to dependencies
+- Clear about non-scope
+- Clear about data ownership
+- Clear about public interfaces
+- Clear about offline behavior
+- Clear about compatibility impact
+
+A specification must not:
+
+- Hide assumptions
+- Mix unrelated modules
+- Invent implementation details unnecessarily
+- Replace an ADR when an ADR is required
+- Replace a task when a task is required
+- Allow AI agents to guess
+- Allow uncontrolled continuation
+
+---
+
+## 7. Specification Lifecycle
+
+A typical specification lifecycle is:
+
+```text
+Draft
+  ↓
+Review
+  ↓
+Approved
+  ↓
+AI Tasks
+  ↓
+Implementation
+  ↓
+Tests
+  ↓
+Review
+```
+
+Implementation should begin only after approval unless explicitly allowed.
+
+---
+
+## 8. AI Implementation Rule
+
+AI implementation agents must treat approved specifications as contracts.
+
+If a specification is incomplete, the AI agent must stop and report the missing requirement.
+
+The AI agent must not:
+
+- Invent missing behavior
+- Add hidden features
+- Rewrite scope
+- Create architecture
+- Change public APIs
+- Modify unrelated files
+- Continue beyond the assigned task
+
+---
+
+## 9. Summary
+
+This template exists to make Aurora specifications consistent, executable and reviewable.
+
+Aurora must be built from structured specifications, not from scattered prompts.
+
+The specification is the product definition.
+
+Code follows the specification.
